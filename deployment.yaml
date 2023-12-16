@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: private-registry-nginx
+  namespace: portal
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: pr-nginx
+  template:
+    metadata:
+      labels:
+        app: pr-nginx
+    spec:
+      containers:
+      - name: pr-nginx
+        image: mizushi/myplugin:0.1
+        ports:
+        - containerPort: 80
